@@ -1,4 +1,4 @@
-import { quickSort } from '.'
+import { quickSort } from "..";
 
 describe('quick sort', () => {
     it('should sort sequence arr', () => {
