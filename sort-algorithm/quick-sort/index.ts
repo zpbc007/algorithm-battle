@@ -1,3 +1,5 @@
+import { swap } from "@utils/swap";
+
 export function quickSort<T = any>(arr: T[], left: number = 0, right: number = arr.length - 1) {
     if (left < right) {
         const partitionIndex = partition<T>(arr, left, right)
@@ -8,6 +10,10 @@ export function quickSort<T = any>(arr: T[], left: number = 0, right: number = a
     return arr
 }
 
+/**
+ * 找到数组的中间值位置并排序
+ * @returns 数组的中间值位置
+ */
 function partition<T>(arr: T[], left: number, right: number) {
     if (left === right) {
         return left
@@ -25,13 +31,4 @@ function partition<T>(arr: T[], left: number, right: number) {
     swap(arr, left, index - 1)
 
     return index - 1
-}
-
-function swap<T>(arr: T[], i: number, j: number) {
-    if (i === j) {
-        return 
-    }
-    const temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
 }
