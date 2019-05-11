@@ -1,4 +1,4 @@
-import { getMinAndMax } from "../get-max-min";
+import { getMinAndMax } from "./get-max-min";
 
 describe('get max', () => {
     it('should get minVal and maxVal in arr', () => {

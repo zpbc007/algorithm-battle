@@ -1,4 +1,4 @@
-import { getMinAndMax } from "./get-max-min";
+import { getMinAndMax } from "@utils/get-max-min";
 
 export function countingSort(arr: number[]) {
     const { max, min } = getMinAndMax(arr)
