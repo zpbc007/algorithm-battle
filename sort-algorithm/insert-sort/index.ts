@@ -1,4 +1,4 @@
-export function inserSort(arr: number[]) {
+export function insertSort(arr: number[]) {
     for (let i = 1; i < arr.length; i++) {
         let preIndex = i - 1
         const current = arr[i]
