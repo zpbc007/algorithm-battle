@@ -35,7 +35,7 @@ describe('LinkedList', () => {
     it('should delete node by value from linked list', () => {
         const linkedList = new LinkedList()
 
-        expect(linkedList.delete(5)).toBeNull()
+        expect(linkedList.delete(5).length).toBe(0)
 
         linkedList.append(1)
         linkedList.append(1)

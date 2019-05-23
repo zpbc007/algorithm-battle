@@ -1,12 +1,9 @@
 import { Comparator, ICompareFunction } from '@utils/comparator'
-import { LinkedListNode } from './linked-list-node'
+import { DoubleLinkedListNode } from './double-linked-list-node'
 
-export class LinkedList<T> {
-    // 头结点
-    head: LinkedListNode<T> = null
-    // 尾节点
-    tail: LinkedListNode<T> = null
-    // 比较函数
+export class DoubleLinkedList<T> {
+    head: DoubleLinkedListNode<T> = null
+    tail: DoubleLinkedListNode<T> = null
     compare: Comparator<T>
     constructor(compareFunction?: ICompareFunction<T>) {
         this.compare = new Comparator(compareFunction)
@@ -14,11 +11,18 @@ export class LinkedList<T> {
 
     /** 头部插入 */
     prepend(value: T) {
-        // 新建节点并且指向当前头部节点
-        const node = new LinkedListNode(value, this.head)
+        // 新建节点，next 指针指向当前头结点
+        const node = new DoubleLinkedListNode(value, this.head)
+
+        // 头部节点 previous 指针指向新建节点
+        if (this.head) {
+            this.head.previous = node
+        }
+
+        // 改变头部节点
         this.head = node
 
-        // 尾节点不存在指向当前节点
+        // 尾部节点不存在指向当前节点
         if (!this.tail) {
             this.tail = node
         }
@@ -28,52 +32,67 @@ export class LinkedList<T> {
 
     /** 尾部插入 */
     append(value: T) {
-        const node = new LinkedListNode(value)
+        // 新建节点，previous 指针指向当前尾结点
+        const node = new DoubleLinkedListNode(value, null, this.tail)
 
-        // 没有头结点，直接赋值
+        // 头结点不存在直接赋值
         if (!this.head) {
             this.head = this.tail = node
-        } else {
-            this.tail.next = node
-            this.tail = node
+
+            return this
         }
+
+        this.tail.next = node
+        this.tail = node
 
         return this
     }
 
     /** 删除 */
     delete(value: T) {
-        // 被删除节点
-        const delNodes: Array<LinkedListNode<T>> = []
-
+        const delNodes: Array<DoubleLinkedListNode<T>> = []
         if (!this.head) {
             return delNodes
         }
 
-        // 检查是否需要删除头结点
+        // 是否需要删除头节点
         while (this.head && this.compare.equal(this.head.value, value)) {
             delNodes.push(this.head)
+            if (this.head.next) {
+                // 置空头节点下一节点的 previous 指向
+                this.head.next.previous = null
+
+                // 已经遍历到尾节点
+            } else {
+                this.tail = null
+            }
             this.head = this.head.next
         }
 
         let curNode = this.head
 
-        if (curNode !== null) {
-            // 遍历中间节点
+        if (curNode) {
             while (curNode.next) {
                 if (this.compare.equal(curNode.next.value, value)) {
                     delNodes.push(curNode.next)
-                    // 此时不应移动指针
+                    if (curNode.next.next) {
+                        // 当前节点的孙子节点的 previous 指向当前节点
+                        curNode.next.next.previous = curNode
+
+                        // 没有孙子节点说明被删除的为尾节点，因此当前节点为新的尾节点
+                    } else {
+                        this.tail = curNode
+                    }
                     curNode.next = curNode.next.next
                 } else {
                     curNode = curNode.next
                 }
             }
 
-            //  检查是否需要删除尾节点
-            if (this.compare.equal(this.tail.value, value)) {
+            // 是否需要删除尾节点
+            if (this.tail && this.compare.equal(this.tail.value, value)) {
                 delNodes.push(this.tail)
-                this.tail = curNode
+                curNode.next = null
             }
         }
 
@@ -83,7 +102,7 @@ export class LinkedList<T> {
     /** 查找 */
     find({ value, callback }: { value?: T; callback?: (value: T) => boolean }) {
         let curNode = this.head
-        const findNodes: Array<LinkedListNode<T>> = []
+        const findNodes: Array<DoubleLinkedListNode<T>> = []
         const cb = callback || ((curValue: T) => this.compare.equal(curValue, value))
 
         while (curNode) {
@@ -103,32 +122,23 @@ export class LinkedList<T> {
             return null
         }
 
-        // 被删除的节点
+        // 被删除节点
         const tail = this.tail
 
-        // 只有一个元素
+        // 只有一个节点
         if (this.head === this.tail) {
             this.head = null
             this.tail = null
-            return tail
+        } else {
+            this.tail.previous.next = null
+            this.tail = this.tail.previous
         }
-
-        // 遍历时的节点
-        let curNode = this.head
-        // 遍历到尾节点的前一个节点
-        while (curNode.next.next) {
-            curNode = curNode.next
-        }
-        // 当前节点为尾节点
-        curNode.next = null
-        this.tail = curNode
 
         return tail
     }
 
     /** 删除头结点 */
     deleteHead() {
-        // 空链表
         if (!this.head) {
             return null
         }
@@ -138,6 +148,7 @@ export class LinkedList<T> {
             this.head = null
             this.tail = null
         } else {
+            this.head.next.previous = null
             this.head = this.head.next
         }
 
@@ -185,19 +196,18 @@ export class LinkedList<T> {
     /** 反转 */
     reverse() {
         let curNode = this.head
-        let preNode = null
+
         while (curNode) {
-            // 保存下一节点的引用
             const nextNode = curNode.next
-            // 当前节点指向前一节点
-            curNode.next = preNode
-            // 移动指针
-            preNode = curNode
+            const previous = curNode.previous
+            curNode.previous = nextNode
+            curNode.next = previous
             curNode = nextNode
         }
 
-        this.tail = this.head
-        this.head = preNode
+        const head = this.head
+        this.head = this.tail
+        this.tail = head
 
         return this
     }
