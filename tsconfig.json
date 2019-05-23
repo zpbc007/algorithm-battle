@@ -15,8 +15,8 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "paths": {
-            "@utils/*": ["utils/*"],
-            "@algorithm/*": ["sort-algorithm/*"]
+            "@utils/*": ["src/utils/*"],
+            "@algorithm/*": ["src/sort-algorithm/*"]
         }
     },
     "exclude": [

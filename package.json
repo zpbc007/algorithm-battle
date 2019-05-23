@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "lint:fix": "tslint -c tslint.json \"src/**/*.{ts,tsx}\" --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,tsx}\"",
     "test": "jest"
   },
   "dependencies": {},
