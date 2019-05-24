@@ -12,7 +12,7 @@ export class Queue<T> {
 
     /** 读取头结点 */
     peek() {
-        if (!this.linkedList.head) {
+        if (this.isEmpty()) {
             return null
         }
 
