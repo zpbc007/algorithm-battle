@@ -153,7 +153,7 @@ export class LinkedList<T> {
     }
 
     toArray() {
-        const result = []
+        const result: T[] = []
         if (!this.head) {
             return result
         }
