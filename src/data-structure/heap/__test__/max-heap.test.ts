@@ -1,3 +1,4 @@
+import { Comparator } from '@utils/comparator'
 import { MaxHeap } from '../max-heap'
 
 describe('MaxHeap', () => {
@@ -149,21 +150,22 @@ describe('MaxHeap', () => {
     })
 
     it('should be possible to remove items from heap with custom finding comparator', () => {
-        const maxHeap = new MaxHeap<string>((a, b) => {
+        const maxHeap = new MaxHeap<string>()
+        maxHeap.add('a')
+        maxHeap.add('bb')
+        maxHeap.add('ccc')
+        maxHeap.add('dddd')
+        expect(maxHeap.toString()).toBe('dddd,ccc,bb,a')
+
+        const comparator = new Comparator<string>((a, b) => {
             if (a.length === b.length) {
                 return 0
             }
 
             return a.length < b.length ? -1 : 1
         })
-        maxHeap.add('a')
-        maxHeap.add('bb')
-        maxHeap.add('ccc')
-        maxHeap.add('dddd')
 
-        expect(maxHeap.toString()).toBe('dddd,ccc,bb,a')
-
-        maxHeap.remove('hey')
+        maxHeap.remove('hey', comparator)
         expect(maxHeap.toString()).toBe('dddd,a,bb')
     })
 })

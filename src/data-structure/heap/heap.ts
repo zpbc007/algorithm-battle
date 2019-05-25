@@ -46,11 +46,11 @@ export abstract class Heap<T> {
     }
 
     /** 查找对应节点的位置 */
-    find(item: T) {
+    find(item: T, comparator = this.compare) {
         const indexArr: number[] = []
 
         for (const [index, valueItem] of this.heapContainer.entries()) {
-            if (this.compare.equal(valueItem, item)) {
+            if (comparator.equal(valueItem, item)) {
                 indexArr.push(index)
             }
         }
@@ -70,12 +70,12 @@ export abstract class Heap<T> {
     }
 
     /** 删除节点 */
-    remove(item: T) {
-        const numberToRemove = this.find(item).length
+    remove(item: T, comparator = this.compare) {
+        const numberToRemove = this.find(item, comparator).length
 
         for (let i = 0; i < numberToRemove; i++) {
             // 需要被删除的位置
-            const removeIndex = this.find(item).pop()
+            const removeIndex = this.find(item, comparator).pop()
 
             // 删除最后一位直接移除
             if (removeIndex === this.heapContainer.length - 1) {
