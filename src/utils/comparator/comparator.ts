@@ -25,4 +25,12 @@ export class Comparator<T> {
     greaterThan(a: T, b: T) {
         return this.compare(a, b) > 0
     }
+
+    lessThanOrEqual(a: T, b: T) {
+        return this.equal(a, b) || this.lessThan(a, b)
+    }
+
+    greaterThanOrEqual(a: T, b: T) {
+        return this.equal(a, b) || this.greaterThan(a, b) 
+    }
 }

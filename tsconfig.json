@@ -7,6 +7,7 @@
         "allowJs": false,
         "lib": ["es7", "es2015", "esnext"],
         "moduleResolution": "node",
+        "downlevelIteration": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "baseUrl": ".",
