@@ -1,24 +1,24 @@
 import { swap } from 'src/utils/swap'
 
 /**
- * 找到数组的中间值位置并排序
- * @returns 数组的中间值位置
+ * 找出数组 left right 间的中间位置
  */
 export function partition<T>(arr: T[], left: number, right: number) {
-    if (left === right) {
-        return left
-    }
+    // 将第一个作为基础值
     const base = arr[left]
-    let index = left + 1
+    // left - smallIndex 之间的元素都比 base 小
+    let smallIndex = left + 1
 
-    for (let i = index; i <= right; i++) {
+    for (let i = smallIndex; i <= right; i++) {
         if (arr[i] < base) {
-            swap(arr, i, index)
-            index++
+            swap(arr, i, smallIndex)
+            // 移动指针
+            smallIndex++
         }
     }
 
-    swap(arr, left, index - 1)
+    // 将中间值移到中间
+    swap(arr, left, smallIndex - 1)
 
-    return index - 1
+    return smallIndex - 1
 }
