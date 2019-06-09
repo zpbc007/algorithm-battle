@@ -19,3 +19,7 @@ greatest common divisor
 4. 如果A<sub>n</sub>为偶数则, A<sub>n + 1</sub> = A<sub>n</sub> / 2, B<sub>n + 1</sub> = B<sub>n</sub>, C<sub>n + 1</sub> = C<sub>n</sub>
 5. 如果B<sub>n</sub>为偶数则, B<sub>n + 1</sub> = B<sub>n</sub> / 2, A<sub>n + 1</sub> = A<sub>n</sub>, C<sub>n + 1</sub> = C<sub>n</sub>
 6. 如果二者都为奇数则，A<sub>n + 1</sub> = |A<sub>n</sub> - B<sub>n</sub>|, B<sub>n + 1</sub> = min(A<sub>n</sub>, B<sub>n</sub>), C<sub>n + 1</sub> = C<sub>n</sub>
+
+# 最小公倍数
+
+两数乘积除以最大公约数即可
