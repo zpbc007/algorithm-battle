@@ -3,20 +3,61 @@
  * @return {number[]}
  */
 export function plusOne(digits: number[]) {
-    let temp = 1
+    let carry = 1
     const result = []
+
+    // 从后向前遍历
     for (let i = digits.length - 1; i >= 0; i--) {
-        let current = digits[i] + temp
-        temp = 0
+        let current = digits[i] + carry
+
+        // 大于10进位
         if (current >= 10) {
             current = current - 10
-            temp = 1
+            carry = 1
+        } else {
+            carry = 0
         }
+
+        // 插入新的数字
         result.unshift(current)
     }
-    if (temp) {
+
+    // 进位
+    if (carry) {
         result.unshift(1)
     }
 
     return result
+}
+
+export const reducePlusOne = (digits: number[]) => {
+    const { result: tempResult, carry: leftCarry } = digits.reduceRight<{
+        result: number[]
+        carry: number
+    }>(
+        ({ result, carry }, current) => {
+            current = current + carry
+            if (current >= 10) {
+                current = current - 10
+                carry = 1
+            } else {
+                carry = 0
+            }
+
+            return {
+                result: [current, ...result],
+                carry,
+            }
+        },
+        {
+            result: [],
+            carry: 1,
+        },
+    )
+
+    if (leftCarry) {
+        return [leftCarry, ...tempResult]
+    } else {
+        return tempResult
+    }
 }
