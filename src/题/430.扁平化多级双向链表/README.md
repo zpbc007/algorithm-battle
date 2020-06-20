@@ -6,6 +6,8 @@
 
 ## 代码
 
+递归：
+
 ```ts
 export class Node {
     constructor(
@@ -53,5 +55,35 @@ function flattenAndGetLast(head: Node) {
         head,
         last: pre ? pre : head,
     }
+}
+```
+
+迭代:
+```ts
+export function flatten(head: Node) {
+    let cur = head
+
+    while (cur) {
+        // 存在子节点
+        if (cur.child) {
+            const { child, next } = cur
+            child.prev = cur
+            cur.child = null
+            cur.next = child
+
+            let temp = child
+            // 找到子节点的最后一位
+            while (temp.next) {
+                temp = temp.next
+            }
+            temp.next = next
+            if (next) {
+                next.prev = temp
+            }
+        }
+        cur = cur.next
+    }
+
+    return head
 }
 ```
