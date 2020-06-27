@@ -1,4 +1,6 @@
-import { getArrayFromList, getListFromArray, reverseList } from '..'
+import { getListFromArray } from '@utils/arrayToList'
+import { getArrayFromList } from '@utils/listToArray'
+import { reverseList } from '..'
 
 describe('206 反转链表', () => {
     it('', () => {
