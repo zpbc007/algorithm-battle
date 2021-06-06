@@ -17,6 +17,7 @@ export function coinChange(coins: number[], amount: number): number {
 
             // 当前值为前一个的最小值 + 1，如果前一个无解，则设为上限
             dpArr[i] = Math.min(dpArr[i], dpArr[i - coin] + 1)
+            console.warn('target: ', i)
         }
     }
 

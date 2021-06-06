@@ -18,6 +18,8 @@ export function coinChange(coins: number[], amount: number): number {
             return cache.get(target)
         }
 
+        console.warn('cache not found: ', target)
+
         // 取每一个硬币
         const result = coins.reduce((acc, coinAmount) => {
             const subProblem = main(target - coinAmount)
@@ -39,6 +41,7 @@ export function coinChange(coins: number[], amount: number): number {
         const res = result === null ? -1 : result
 
         cache.set(target, res)
+        console.warn('set cache: ', target)
         
         return res
     }
