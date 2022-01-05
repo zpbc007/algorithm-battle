@@ -41,6 +41,6 @@ describe('sort', () => {
     });
 
     test('insertSort', () => {
-        testSort(insertSort, true);
+        testSort(insertSort);
     });
 });
