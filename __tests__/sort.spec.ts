@@ -1,4 +1,4 @@
-import { selectSort, bubleSort } from '../src';
+import { selectSort, bubleSort, insertSort } from '../src';
 
 describe('sort', () => {
     let caseArr: number[][];
@@ -38,5 +38,9 @@ describe('sort', () => {
 
     test('buble sort', () => {
         testSort(bubleSort);
+    });
+
+    test('insertSort', () => {
+        testSort(insertSort, true);
     });
 });
