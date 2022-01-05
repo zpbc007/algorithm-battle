@@ -1,8 +1,21 @@
-import { selectSort } from '../src';
+import { selectSort, bubleSort } from '../src';
 
 describe('sort', () => {
     let caseArr: number[][];
     let resultArr: number[][];
+    const testSort = (sortFunc: (arr: number[]) => number[], log = false) => {
+        caseArr.forEach((arr, index) => {
+            if (log) {
+                console.warn(
+                    // @ts-ignore
+                    `fun: ${sortFunc.name}, source: ${JSON.stringify(
+                        arr
+                    )}, result: ${JSON.stringify(sortFunc([...arr]))}`
+                );
+            }
+            expect(sortFunc(arr)).toEqual(resultArr[index]);
+        });
+    };
 
     beforeEach(() => {
         caseArr = [
@@ -20,8 +33,10 @@ describe('sort', () => {
     });
 
     test('select sort', () => {
-        caseArr.forEach((arr, index) => {
-            expect(selectSort(arr)).toEqual(resultArr[index]);
-        });
+        testSort(selectSort);
+    });
+
+    test('buble sort', () => {
+        testSort(bubleSort);
     });
 });
