@@ -35,7 +35,7 @@ function merge(
     let result = 0;
 
     while (leftPoint <= mid && rightPoint <= right) {
-        if (arr[leftPoint] < arr[rightPoint]) {
+        if (arr[leftPoint] <= arr[rightPoint]) {
             tmpArr.push(arr[leftPoint++]);
         } else {
             result += mid - leftPoint + 1;
