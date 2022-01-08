@@ -20,6 +20,9 @@ export function swapByXOR<T>(
     sourceIndex: number,
     targetIndex: number
 ) {
+    if (sourceIndex === targetIndex) {
+        return arr;
+    }
     arr[sourceIndex] ^= arr[targetIndex];
     arr[targetIndex] ^= arr[sourceIndex];
     arr[sourceIndex] ^= arr[targetIndex];
