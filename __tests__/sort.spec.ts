@@ -55,6 +55,6 @@ describe('sort', () => {
     });
 
     test('quickSort', () => {
-        testSort(quickSort, true);
+        testSort(quickSort);
     });
 });
