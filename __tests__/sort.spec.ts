@@ -4,6 +4,7 @@ import {
     insertSort,
     mergeSort,
     quickSort,
+    bucketSort,
 } from '../src';
 
 describe('sort', () => {
@@ -33,9 +34,10 @@ describe('sort', () => {
             [4, 3, 2, 1],
             // 乱序
             [2, 3, 1, 4],
+            [321, 1, 1431, 245, 666],
         ];
 
-        resultArr = caseArr.map((item) => [...item].sort());
+        resultArr = caseArr.map((item) => [...item].sort((a, b) => a - b));
     });
 
     test('select sort', () => {
@@ -56,5 +58,9 @@ describe('sort', () => {
 
     test('quickSort', () => {
         testSort(quickSort);
+    });
+
+    test('bucketSort', () => {
+        testSort(bucketSort);
     });
 });
