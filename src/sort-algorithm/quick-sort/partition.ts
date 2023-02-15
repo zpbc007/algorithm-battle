@@ -1,4 +1,4 @@
-import { swap } from 'src/utils/swap'
+import { swap } from '@utils/swap'
 
 /**
  * 找出数组 left right 间的中间位置

@@ -3,7 +3,7 @@
  * 将数组分成左右两份 直到数组只有一个元素为止
  * 将分离后的数组按顺序合并
  */
-export function mergeSort(arr: number[]) {
+export function mergeSort(arr: number[]): number[] {
     const len = arr.length
     if (len < 2) {
         return arr
@@ -22,23 +22,23 @@ export function mergeSort(arr: number[]) {
  * 合并
  * left 与 right 为各自有序的数组
  */
-function merge(left: number[], right: number[]) {
-    const result = []
+function merge(left: number[], right: number[]): number[] {
+    const result: number[] = []
     // 左右各自有序 只需取第一个进行比对
     while (left.length && right.length) {
         if (left[0] < right[0]) {
-            result.push(left.shift())
+            result.push(left.shift()!)
         } else {
-            result.push(right.shift())
+            result.push(right.shift()!)
         }
     }
 
     while (left.length) {
-        result.push(left.shift())
+        result.push(left.shift()!)
     }
 
     while (right.length) {
-        result.push(right.shift())
+        result.push(right.shift()!)
     }
 
     return result

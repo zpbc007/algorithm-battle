@@ -1,4 +1,4 @@
-import { swap } from 'src/utils/swap'
+import { swap } from '@utils/swap'
 
 /**
  * 调整堆 不包括end

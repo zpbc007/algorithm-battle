@@ -1,5 +1,5 @@
-import { quickSort } from 'src/sort-algorithm/quick-sort'
-import { getMinAndMax } from 'src/utils/get-max-min'
+import { quickSort } from '@app/sort-algorithm/quick-sort'
+import { getMinAndMax } from '@utils/get-max-min'
 
 export function bucketSort(arr: number[], bucketSize = 5) {
     const { max, min } = getMinAndMax(arr)

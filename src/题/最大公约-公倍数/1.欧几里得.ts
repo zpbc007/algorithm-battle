@@ -13,7 +13,7 @@ export function gcd(a: number, b: number, recursive = true) {
 /**
  * 递归实现
  */
-function _gcd(a: number, b: number) {
+function _gcd(a: number, b: number): number {
     if (b === 0) {
         return a
     }

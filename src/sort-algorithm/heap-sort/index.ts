@@ -1,4 +1,4 @@
-import { swap } from 'src/utils/swap'
+import { swap } from '@utils/swap'
 import { buildHeap } from './build-heap'
 import { heapify } from './heapify'
 
