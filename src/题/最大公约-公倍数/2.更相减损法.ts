@@ -6,7 +6,7 @@ export function gcd(a: number, b: number, recursive = true) {
 }
 
 /** 递归实现 */
-function gcd_1(a: number, b: number) {
+function gcd_1(a: number, b: number): number {
     // 计算差值
     const diff = a - b
 
@@ -24,7 +24,7 @@ function gcd_1(a: number, b: number) {
  * 小的数与差值进行比较
  * 如果相等则为最小公倍数
  */
-function _gcd(smaller: number, diff: number) {
+function _gcd(smaller: number, diff: number): number {
     if (diff === smaller) {
         return smaller
     } else {
@@ -33,7 +33,7 @@ function _gcd(smaller: number, diff: number) {
 }
 
 /** 非递归实现 */
-export function gcd_2(a: number, b: number) {
+export function gcd_2(a: number, b: number): number {
     let [bigger, small, diff] = findSeq(a, b)
 
     while (diff && small !== diff) {

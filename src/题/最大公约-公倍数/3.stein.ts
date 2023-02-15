@@ -3,7 +3,7 @@ export function steinGcd(a: number, b: number, recursive = true) {
 }
 
 /** 递归实现 */
-function steinGcd_1(a: number, b: number, c: number = 1) {
+function steinGcd_1(a: number, b: number, c: number = 1): number {
     if (a === b) {
         return a * c
     }
@@ -38,7 +38,7 @@ function steinGcd_1(a: number, b: number, c: number = 1) {
 }
 
 /** 非递归实现 */
-function steinGcd_2(a: number, b: number) {
+function steinGcd_2(a: number, b: number): number {
     let c = 1
 
     // a b 不相等且没有为0的
@@ -79,4 +79,6 @@ function steinGcd_2(a: number, b: number) {
     if (b === 0) {
         return a * c
     }
+
+    return 0
 }

@@ -1,8 +1,8 @@
 export function getMinAndMax<T>(arr: T[]) {
     if (!arr || arr.length === 0) {
         return {
-            max: null,
-            min: null,
+            max: 0,
+            min: 0,
         }
     }
 
