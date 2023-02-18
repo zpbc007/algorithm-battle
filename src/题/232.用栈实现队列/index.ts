@@ -74,7 +74,7 @@ export class MyQueue {
     pushToPop() {
         while (!this.pushStack.isEmpty()) {
             const item = this.pushStack.pop()
-            this.popStack.push(item)
+            this.popStack.push(item!)
         }
     }
 }
