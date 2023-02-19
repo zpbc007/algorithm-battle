@@ -1,4 +1,5 @@
 import { decodeString } from '..'
+import {decodeString as decodeString2} from '../index.2'
 
 describe('394 字符串解码', () => {
     const inputArr = [
@@ -17,11 +18,16 @@ describe('394 字符串解码', () => {
         'yypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef',
         'zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef',
     ]
+
     it('should work', () => {
         inputArr.forEach((str, index) => {
-            if (index === 4) {
-                expect(decodeString(str)).toBe(outputArr[index])
-            }
+            expect(decodeString(str)).toBe(outputArr[index])
+        })
+    })
+
+    it('should work', () => {
+        inputArr.forEach((str, index) => {
+            expect(decodeString2(str)).toBe(outputArr[index])
         })
     })
 })
