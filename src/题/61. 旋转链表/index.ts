@@ -1,11 +1,4 @@
-export class ListNode {
-    val: number
-    next: ListNode | null
-    constructor(val?: number, next?: ListNode | null) {
-        this.val = (val === undefined ? 0 : val)
-        this.next = (next === undefined ? null : next)
-    }
-}
+import { ListNode } from '@utils/list-node'
 
 export function rotateRight(head: ListNode | null, k: number): ListNode | null {
     if (!head || head.next == null) {
@@ -16,19 +9,18 @@ export function rotateRight(head: ListNode | null, k: number): ListNode | null {
     let last: ListNode | null = head
     let step = 0
 
-    // 第一个指针先移动 K 
+    // 第一个指针先移动 K
     let index = 0
     while (index < k) {
-        first = move2Next({cur: first, head})
+        first = move2Next({ cur: first, head })
 
         index++
     }
 
-
     while (first.next !== null) {
-        first = move2Next({cur: first, head})
-        last = move2Next({cur: last, head})
-        
+        first = move2Next({ cur: first, head })
+        last = move2Next({ cur: last, head })
+
         step++
     }
 
@@ -37,12 +29,12 @@ export function rotateRight(head: ListNode | null, k: number): ListNode | null {
     last!.next = null
 
     return newHead
-};
+}
 
 /**
  * 考虑循环移动的场景
  */
-function move2Next({ cur, head }: { cur: ListNode, head: ListNode }) {
+function move2Next({ cur, head }: { cur: ListNode; head: ListNode }) {
     if (cur.next) {
         return cur.next
     }
