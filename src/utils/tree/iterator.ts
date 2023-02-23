@@ -11,7 +11,7 @@ export function frontDfs(root: ITreeNode | null, cb: (node: ITreeNode) => void) 
     frontDfs(root.right, cb)
 }
 
-export function frontBfs(root: ITreeNode | null, cb: (node: ITreeNode) => void) {
+export function frontBfs(root: ITreeNode | null, cb: (node: ITreeNode | null) => void) {
     if (!root) {
         return
     }
@@ -20,7 +20,7 @@ export function frontBfs(root: ITreeNode | null, cb: (node: ITreeNode) => void) 
     _frontBfs(root, cb)
 }
 
-function _frontBfs(root: ITreeNode | null, cb: (node: ITreeNode) => void) {
+function _frontBfs(root: ITreeNode | null, cb: (node: ITreeNode | null) => void) {
     if (!root || (!root.left && !root.right)) {
         return
     }

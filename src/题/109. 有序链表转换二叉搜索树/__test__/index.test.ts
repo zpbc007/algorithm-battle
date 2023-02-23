@@ -11,7 +11,7 @@ describe('有序链表转换二插搜索树', () => {
         inputs.forEach((input, index) => {
             const head = getListFromArray(input)
             const root = getRootFunc(head)
-            const treeArr = []
+            const treeArr: any[] = []
             frontBfs(root, (node) => treeArr.push(node ? node.val : null))
 
             expect(treeArr).toEqual(outPuts[index])
