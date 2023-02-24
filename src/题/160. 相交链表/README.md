@@ -85,3 +85,22 @@ function getIntersectionNodeByPointer(headA: IListNode, headB: IListNode) {
     return null
 }
 ```
+
+## 思路
+
+A 不相交长度 = m, B 不相交长度 = n, 相交部分长度 c
+1. 相交
+ 1.1 lengthA === lengthB
+     两个指针同时走到相交节点
+ 1.2 lengthA !== lengthB
+     pointA 移动：m + c + n
+     pointB 移动: n + c + m
+     同时移动到相交节点
+2. 不相交
+ 2.1 lengthA === lengthB
+     两个指针同时走到尾结点 Null
+ 2.2 lengthA !== lengthB
+     pointA 移动: m + c + n + c
+     pointB 移动: n + c + m + c
+@param headA
+@param headB

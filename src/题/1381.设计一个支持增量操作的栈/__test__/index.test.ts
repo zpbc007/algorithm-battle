@@ -1,5 +1,6 @@
 import { CustomStack } from '..'
 import { CustomStack2 } from '../index.2'
+import { CustomStack as CustomStack3 } from '../index.3'
 import { ICustomStack } from '../index.type'
 
 describe('1381.设计一个支持增量操作的栈', () => {
@@ -38,5 +39,10 @@ describe('1381.设计一个支持增量操作的栈', () => {
     it('increment 复杂度为O(1)', () => {
         test(CustomStack2)
         test2(CustomStack2)
+    })
+
+    it('CustomStack3 increment 复杂度为O(1)', () => {
+        test(CustomStack3)
+        test2(CustomStack3)
     })
 })

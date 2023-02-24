@@ -1,5 +1,5 @@
 export function decodeString(s: string) {
-    const stack = []
+    const stack: string[] = []
 
     for (const item of s) {
         if (item === ']') { // 出栈
@@ -28,8 +28,8 @@ function getStrAndNumBefore(stack: string[]) {
 
         if (recordNum) {
             // 遇到非数字
-            if (!/[0-9]/.test(item)) {
-                stack.push(item)
+            if (!/[0-9]/.test(item!)) {
+                stack.push(item!)
                 break
             }
             numStr = `${item}${numStr}`

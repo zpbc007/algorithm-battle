@@ -95,3 +95,13 @@ function sortedArrayToBST(arr: number[], start: number, end: number) {
     return root
 }
 ```
+
+## 利用中序遍历
+
+### 思路
+
+链表的顺序，与中序遍历的输出顺序是一致的。基于此按照中序遍历创建一棵树，并不断填值，就能得到想要的结果了
+
+### 复杂度分析
+- 时间复杂度: O(N)
+- 空间复杂度: O(1)
