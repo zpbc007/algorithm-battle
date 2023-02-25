@@ -39,3 +39,46 @@ export function detectCycle(head: IListNode) {
     return slow
 }
 ```
+
+
+## 思路
+- slow 指针移动 S，fast 指针移动 F，则有 F = 2S (快节点移动的距离是慢节点的2倍)
+- 非环长度为 a，环长度为 b，二者相遇时，F - S = n*b (套圈了) 
+- 因此 2S - S = n * b => S = n * b (慢节点移动的总距离是环的长度的 n 倍)
+- 入口节点位置：a + nb 
+- 只要 slow 指针再移动 a 即可到达入口
+
+## 代码
+```ts
+function detectCycle(head: ListNode | null): ListNode | null {
+    if (!head) {
+        return null
+    }    
+
+    let slow: ListNode | null = head
+    let fast:  ListNode | null = head
+
+    while(fast !== null) {
+        slow = slow?.next  || null
+        fast = fast?.next?.next || null
+
+        /**
+         * 快慢节点相遇
+         */
+        if (slow === fast && fast !== null) {
+            fast = head
+            while (slow !== fast) {
+                fast = fast!.next
+                slow = slow!.next
+            }
+
+            return slow
+        }
+    }
+
+    return null
+};
+```
+## 复杂度
+- 空间复杂度 O(1)
+- 时间复杂度 O(N)
