@@ -39,7 +39,7 @@ export abstract class Heap<T> {
         const head = this.heapContainer[0]
 
         // 将最后一个节点放到头节点上并进行下沉操作
-        this.heapContainer[0] = this.heapContainer.pop()
+        this.heapContainer[0] = this.heapContainer.pop()!
         this.heapifyDown()
 
         return head
@@ -75,7 +75,7 @@ export abstract class Heap<T> {
 
         for (let i = 0; i < numberToRemove; i++) {
             // 需要被删除的位置
-            const removeIndex = this.find(item, comparator).pop()
+            const removeIndex = this.find(item, comparator).pop()!
 
             // 删除最后一位直接移除
             if (removeIndex === this.heapContainer.length - 1) {
@@ -84,7 +84,7 @@ export abstract class Heap<T> {
                 const parentIndex = this.getParentIndex(removeIndex)
                 const parentNode = this.heapContainer[parentIndex]
                 // 删除节点
-                this.heapContainer[removeIndex] = this.heapContainer.pop()
+                this.heapContainer[removeIndex] = this.heapContainer.pop()!
 
                 // 如果有子节点，且没有父节点或者 父节点位置已经有序
                 if (
@@ -100,6 +100,10 @@ export abstract class Heap<T> {
         }
 
         return this
+    }
+
+    size() {
+        return this.heapContainer.length
     }
 
     toString() {
@@ -147,7 +151,7 @@ export abstract class Heap<T> {
     }
 
     /** 父级节点 */
-    private getParent(childIndex) {
+    private getParent(childIndex: number) {
         return this.heapContainer[this.getParentIndex(childIndex)]
     }
 
