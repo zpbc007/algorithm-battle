@@ -3,5 +3,6 @@
 ## 代码
 
 ```display-file 
-source-code/题/最大公约-公倍数/1.欧几里得.ts
+source-code/题/886. 可能的二分法/index.ts
 ```
+
