@@ -1,10 +1,11 @@
+import { Comparator } from '@utils/comparator'
 import { heapSort } from '../../heap-sort'
 
 describe('heap sort', () => {
     it('should sort sequence arr ', () => {
         const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-        const result = heapSort(arr)
+        const result = heapSort(arr, new Comparator())
 
         expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
     })
@@ -12,7 +13,7 @@ describe('heap sort', () => {
     it('should sort sequence arr', () => {
         const arr = [9, 8, 7, 6, 5, 4, 3, 2, 1]
 
-        const result = heapSort(arr)
+        const result = heapSort(arr, new Comparator())
 
         expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
     })
@@ -21,7 +22,7 @@ describe('heap sort', () => {
         const arr = [10, 80, 30, 90, 40, 50, 70]
         const expectArr = [10, 30, 40, 50, 70, 80, 90]
 
-        const result = heapSort(arr)
+        const result = heapSort(arr, new Comparator())
 
         expect(result).toEqual(expectArr)
     })
